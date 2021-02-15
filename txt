@@ -1,0 +1,84 @@
+{logs.identifier === agents.identifier ? agent.firstName + agent.lastName : "no name"}
+
+              <div>{agent.identifier.indexOf(this.state.logs.agentIdentifier) == agent.identifier ? <p>{agent.firstName + agent.lastName}</p> : "no match for that name"}</div>
+
+
+
+
+
+
+   <div>
+
+        
+          {this.state.agents.map((agent) => (
+            <div>
+              <p>{agent.identifier.indexOf(this.state.logs.agentIdentifier) == agent.identifier ? 'no name found' : agent.firstName}</p>
+              <p>{agent.identifier.indexOf(this.state.logs.agentIdentifier) == agent.identifier ? 'no name found' : agent.lastName}</p>
+            
+            </div>
+          ))}
+      
+        
+        
+        </div>
+
+
+
+
+
+
+
+
+
+          
+              <td>
+                {this.state.agents.map((log) => (
+                  
+                    <div>
+                      {log.agentIdentifier === this.state.agents.identifier ?  this.state.logs.forEach((item) => console.log(typeof(item.number)) ): 'f' }
+                    </div>
+                  
+                ))}
+              </td>
+
+
+
+
+
+
+
+                  <div className='nameWrapper'>
+          <div>
+            {this.state.agents.map((agent) => (
+              <div>
+                {agent.identifier.indexOf(this.state.logs.agentIdentifier) ==
+                agent.identifier
+                  ? "no name found"
+                  : agent.firstName}
+              </div>
+            ))}
+          </div>
+          <div>
+            {this.state.agents.map((agent) => (
+              <div>
+                {agent.identifier.indexOf(this.state.logs.agentIdentifier) ==
+                agent.identifier
+                  ? "no name found"
+                  : agent.lastName}
+              </div>
+            ))}
+          </div>
+         
+        </div>
+
+
+
+
+
+        res.send({
+    status: "successful",
+    data: {
+     
+      date: req.params[0]
+    },
+  });

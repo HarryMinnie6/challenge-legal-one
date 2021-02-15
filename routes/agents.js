@@ -2,24 +2,43 @@ const express = require("express");
 
 const router = express.Router();
 
-//homepage => display logs
-//aggregated table
+//Routes to JSON files
+let agents = require("../json-data/agents");
+let logs = require("../json-data/logs");
+
+//getting ALL AGENTS
 router.get("/", (req, res, next) => {
-  res.status(200).json({
-    message: "Handling GET requests to /agents",
-  });
+  res.send(agents);
 });
+
+//getting AGENT LOG
 router.get("/:identifier", (req, res, next) => {
   const { identifier } = req.params;
-  if (identifier === true) {
-    res.status(200).json({
-      message: "Handling GET requests to /agents",
-      identifier: identifier,
-    });
-  } else {
-    res.status(200).json({
-      message: "you passed an id",
-    });
-  }
+  const foundAgentLog = Object.values(logs).filter(
+    (user) => user.agentIdentifier === identifier
+  );
+  console.log(foundAgentLog);
+  res.send(foundAgentLog);
+});
+
+//getting AGENT PROFILE
+router.get("/profile/:identifier", (req, res, next) => {
+  const { identifier } = req.params;
+  const foundAgentProfile = Object.values(agents).filter(
+    (user) => user.identifier == identifier
+  );
+  console.log(foundAgentProfile);
+  res.send(foundAgentProfile);
+});
+
+
+//getting AGENT name using logs for homepage
+router.get("/test/:identifier", (req, res, next) => {
+  const { identifier } = req.params;
+  const foundAgentProfileFromLogs = Object.values(agents).filter(
+    (user) => user.identifier ===identifier
+  );
+  console.log(foundAgentProfileFromLogs);
+  // res.send(foundAgentProfile);
 });
 module.exports = router;

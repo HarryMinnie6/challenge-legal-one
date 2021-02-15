@@ -7,6 +7,8 @@ const morgan = require("morgan");
 
 const bodyParser = require("body-parser");
 
+const cors = require("cors");
+app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -15,15 +17,17 @@ app.use(bodyParser.json());
 const agentsRoute = require("./routes/agents");
 const logsRoute = require("./routes/logs");
 const resolutionRoute = require("./routes/resolution");
+const callsRoute = require("./routes/calls");
 let agents = require("./json-data/agents");
 let logs = require("./json-data/logs");
 let resolutions = require("./json-data/resolution");
 
 // const resolutionsRoute = require("./routes/resolutions");
 
-app.use("/agents", agentsRoute);
-app.use("/logs", logsRoute);
+app.use("/agent", agentsRoute);
+app.use("/", logsRoute);
 app.use("/resolution", resolutionRoute);
+app.use("/call", callsRoute);
 
 //Error handling
 app.use((req, res, next) => {
@@ -36,8 +40,8 @@ app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
     error: {
-      massage: error.message
-    }
+      message: error.message,
+    },
   });
 });
 
