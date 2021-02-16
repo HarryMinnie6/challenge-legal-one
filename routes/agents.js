@@ -39,6 +39,6 @@ router.get("/test/:identifier", (req, res, next) => {
     (user) => user.identifier ===identifier
   );
   console.log(foundAgentProfileFromLogs);
-  // res.send(foundAgentProfile);
+  res.send(foundAgentProfileFromLogs);
 });
 module.exports = router;

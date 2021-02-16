@@ -9,7 +9,7 @@ import  {CallCenterContextAPI}  from "./contextAPI/CallCenterContextAPI";
 
 function App() {
   return (
-    <CallCenterContextAPI>
+    
       <div>
         <Router>
           <Switch>
@@ -19,7 +19,7 @@ function App() {
           </Switch>
         </Router>
       </div>
-    </CallCenterContextAPI>
+   
   );
 }
 

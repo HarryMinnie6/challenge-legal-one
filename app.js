@@ -25,7 +25,7 @@ let resolutions = require("./json-data/resolution");
 // const resolutionsRoute = require("./routes/resolutions");
 
 app.use("/agent", agentsRoute);
-app.use("/", logsRoute);
+app.use("/logs", logsRoute);
 app.use("/resolution", resolutionRoute);
 app.use("/call", callsRoute);
 

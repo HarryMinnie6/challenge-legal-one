@@ -6,7 +6,7 @@ let logs = require("../json-data/logs");
 
 
 //getting ALL LOGS
-router.get("/logs", (req, res, next) => {
+router.get("/", (req, res, next) => {
   res.send(logs);
 });
 

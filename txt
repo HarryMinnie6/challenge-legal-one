@@ -82,3 +82,22 @@
       date: req.params[0]
     },
   });
+
+
+     <table className='table table-hover table-dark'>
+        <thead>
+          <tr className='bg-primary'>
+            <th scope='col'>Phone Number</th>
+            <th scope='col'>Number of calls</th>
+            <th scope='col'>Last Call Details</th>
+          </tr>
+        </thead>
+        <tbody>
+         
+          {/*<tr>
+            <td>123456</td>
+            <td>4</td>
+            <td>michael jordan/ 12:55</td>
+          </tr>*/}
+        </tbody>
+      </table>

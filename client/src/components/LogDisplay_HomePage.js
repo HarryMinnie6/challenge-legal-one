@@ -1,19 +1,30 @@
-import React, { useEffect, useContext } from "react";
-// import { response } from "../../../app";
+import React, { useEffect, useContext, useState, Component } from "react";
+import axios from "axios";
 import CallLogs from "../apis/CallLogs";
-import {CallCenterContextAPI} from "../contextAPI/CallCenterContextAPI"
+import { CallCenterContextAPI } from "../contextAPI/CallCenterContextAPI";
 
 function LogDisplay_HomePage() {
-    const [logs , setLogs] =useContext(CallCenterContextAPI)
+  const [logs, setLogs] = useState([]);
+  const [agents, setAgents] = useState([]);
+  // const [isLoading , setIsLoading] =useState(true)
   useEffect(() => {
-    const FetchData = async () => {
-      try {
-        const response = await CallLogs.get("/logs");
-        console.log(response);
-      } catch (error) {}
+    const fetchLogs = async () => {
+      const result = await axios("/logs");
+
+      setLogs(result.data);
     };
-    FetchData();
+    fetchLogs();
+    const fetchAgentNames = async () => {
+      const names = await axios("/agent");
+
+      setAgents(names.data);
+    };
+    fetchAgentNames();
   }, []);
+
+  console.log(agents);
+  console.log(logs);
+
 
   return (
     <div className='container'>
@@ -26,18 +37,25 @@ function LogDisplay_HomePage() {
           </tr>
         </thead>
         <tbody>
-          {logs.map((item) => {
-            <tr></tr>;
-          })}
-          {/*<tr> 
-            <td>123456</td>
-            <td>4</td>
-            <td>michael jordan/ 12:55</td>
-          </tr>*/}
+          {logs.map((item) => (
+            <tr>
+              <td>{item.number}</td>
+
+              <td>{item.dateTime}</td>
+              <td>{item.duration}</td>
+            </tr>
+          ))}
+          {/*<tr>
+        <td>123456</td>
+        <td>4</td>
+        <td>michael jordan/ 12:55</td>
+      </tr>*/}
         </tbody>
       </table>
+      <div></div>
     </div>
   );
 }
 
 export default LogDisplay_HomePage;
+
