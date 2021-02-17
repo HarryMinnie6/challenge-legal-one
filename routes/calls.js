@@ -13,7 +13,7 @@ let resolution = require("../json-data/resolution");
 router.get("/:number", (req, res, next) => {
   const { number } = req.params;
   const foundAgent = Object.values(logs).filter(
-    (user) => user.number == number
+    (user) => user.number === number
   );
   console.log(foundAgent);
   res.send(foundAgent);

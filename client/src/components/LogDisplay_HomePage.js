@@ -1,48 +1,112 @@
 import React, { useEffect, useContext, useState, Component } from "react";
 import axios from "axios";
-import CallLogs from "../apis/CallLogs";
-import { CallCenterContextAPI } from "../contextAPI/CallCenterContextAPI";
+import { useHistory } from "react-router";
+
 
 function LogDisplay_HomePage() {
   const [logs, setLogs] = useState([]);
   const [agents, setAgents] = useState([]);
-  // const [isLoading , setIsLoading] =useState(true)
+  const [agent, setSingleAgents] = useState([]);
+
+  const history = useHistory();
   useEffect(() => {
     const fetchLogs = async () => {
       const result = await axios("/logs");
-
       setLogs(result.data);
     };
     fetchLogs();
+    // ==========================================================================================
     const fetchAgentNames = async () => {
       const names = await axios("/agent");
-
       setAgents(names.data);
     };
     fetchAgentNames();
+    // ==========================================================================================
+    const fetchAgent = async () => {
+      const result = await axios(`/agent`);
+      setSingleAgents(result.data);
+    };
+    fetchAgent();
+    console.log("agents", agent);
+    // ==========================================================================================
   }, []);
 
   console.log(agents);
   console.log(logs);
 
+  const display_call_logs = (number) => {
+    history.push(`/call/${number}`);
+  };
+  const display_agent_logs = (identifier) => {
+    history.push(`/agent/${identifier}`);
+  };
+
+  function seconds_to_minutes(value) {
+    value = Number(value);
+    var minutes = Math.floor((value % 3600) / 60);
+    var seconds = Math.floor((value % 3600) % 60);
+    return ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+  }
 
   return (
-    <div className='container'>
-      <table className='table table-hover table-dark'>
+    <div className='container  page'>
+      <table className='table table-hover table-striped border '>
         <thead>
-          <tr className='bg-primary'>
-            <th scope='col'>Phone Number</th>
-            <th scope='col'>Number of calls</th>
-            <th scope='col'>Last Call Details</th>
+          <tr className='bg-primary text-light'>
+            <th scope='col' className='text-center'>
+              Phone Number
+            </th>
+            <th scope='col' className='text-center'>
+              Call Date and Time
+            </th>
+            <th scope='col' className='text-center'>
+              Call Duration
+            </th>
+            <th scope='col' className='text-center'>
+              Last Call Details
+            </th>
           </tr>
         </thead>
         <tbody>
           {logs.map((item) => (
             <tr>
-              <td>{item.number}</td>
+              <td className='text-center'>
+                <a
+                  href=''
+                  className='text-center call_log_link'
+                  onClick={() => display_call_logs(item.number)}
+                >
+                  {item.number}
+                </a>
+              </td>
 
-              <td>{item.dateTime}</td>
-              <td>{item.duration}</td>
+              <td className='text-center'>
+                {item.dateTime.split("T").join(" ").replace(".000Z", " ")}
+              </td>
+              <td className='text-center'>
+                {seconds_to_minutes(item.duration)}
+              </td>
+              {agent.filter(
+                (user1) => user1.identifier === item.agentIdentifier
+              ) ? (
+                <td className='text-center'>
+                  {agent.map((user) =>
+                    user.identifier === item.agentIdentifier ? (
+                      <a
+                        href=''
+                        className='text-center call_log_link'
+                        onClick={() => display_agent_logs(item.agentIdentifier)}
+                      >
+                        {`${user.firstName} ${user.lastName}`}{" "}
+                      </a>
+                    ) : (
+                      ""
+                    )
+                  )}
+                </td>
+              ) : (
+                "no"
+              )}
             </tr>
           ))}
           {/*<tr>
@@ -58,4 +122,3 @@ function LogDisplay_HomePage() {
 }
 
 export default LogDisplay_HomePage;
-

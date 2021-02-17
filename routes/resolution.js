@@ -8,10 +8,6 @@ let resolution = require("../json-data/resolution");
 router.get("/", (req, res, next) => {
   res.send(resolution);
 });
-router.get("/", (req, res, next) => {
-  res.status(200).json({
-    message: "Handling GET requests to /logs"
-  });
-});
+
 
 module.exports = router;

@@ -101,3 +101,8 @@
           </tr>*/}
         </tbody>
       </table>
+
+
+
+
+         {agent.filter(user1 => (user1.identifier === item.agentIdentifier)) ?<td>{agent.map(user => (user.identifier === item.agentIdentifier ? `${user.firstName} ${user.lastName}` : ""))}</td> : "no"}
