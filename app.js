@@ -20,7 +20,7 @@ let logs = require("./json-data/logs");
 let resolutions = require("./json-data/resolution");
 
 // const resolutionsRoute = require("./routes/resolutions");
-
+app.use('/', logsRoute);
 app.use("/agent", agentsRoute);
 app.use("/logs", logsRoute);
 app.use("/resolution", resolutionRoute);
