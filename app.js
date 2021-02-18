@@ -20,11 +20,11 @@ let logs = require("./json-data/logs");
 let resolutions = require("./json-data/resolution");
 
 // const resolutionsRoute = require("./routes/resolutions");
-
-app.use("/agent", agentsRoute);
-app.use("/logs", logsRoute);
-app.use("/resolution", resolutionRoute);
-app.use("/call", callsRoute);
+app.use(cors())
+app.use("/api/v1/agent", agentsRoute);
+app.use("/api/v1/logs", logsRoute);
+app.use("/api/v1/resolution", resolutionRoute);
+app.use("/api/v1/call", callsRoute);
 
 app.use("/", express.static("client/build"));
 app.get("*", (req, res) => {

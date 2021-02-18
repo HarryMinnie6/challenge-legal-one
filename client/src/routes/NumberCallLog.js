@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState, Component } from "react";
 import axios from "axios";
 import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import CallLogs from "../apis/CallLogs";
 
 const NumberCallLog = () => {
   const [CallNumber, setNumber] = useState([]);
@@ -19,14 +20,14 @@ const NumberCallLog = () => {
     console.log(CallNumber);
     // =====================================================================================================
     const fetchLogs = async () => {
-      const result = await axios(`/call/${number.number}`);
+      const result = await CallLogs.get(`/call/${number.number}`);
       setLogs(result.data);
     };
     fetchLogs();
     console.log("test", JSON.stringify(CallNumber));
     // =====================================================================================================
     const fetchAgent = async () => {
-      const result = await axios(`/agent`);
+      const result = await CallLogs.get(`/agent`);
 
       setAgents(result.data);
     };

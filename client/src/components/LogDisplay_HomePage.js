@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState, Component } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
+import CallLogs from "../apis/CallLogs";
 
 
 function LogDisplay_HomePage() {
@@ -11,19 +12,19 @@ function LogDisplay_HomePage() {
   const history = useHistory();
   useEffect(() => {
     const fetchLogs = async () => {
-      const result = await axios("/logs");
+      const result = await CallLogs.get("/logs");
       setLogs(result.data);
     };
     fetchLogs();
     // ==========================================================================================
     const fetchAgentNames = async () => {
-      const names = await axios("/agent");
+      const names = await CallLogs.get("/agent");
       setAgents(names.data);
     };
     fetchAgentNames();
     // ==========================================================================================
     const fetchAgent = async () => {
-      const result = await axios(`/agent`);
+      const result = await CallLogs.get(`/agent`);
       setSingleAgents(result.data);
     };
     fetchAgent();
@@ -69,8 +70,8 @@ function LogDisplay_HomePage() {
         </thead>
         <tbody>
           {logs.map((item) => (
-            <tr>
-              <td className='text-center'>
+            <tr key={item.identifier} >
+              <td  className='text-center'>
                 <a
                   href=''
                   className='text-center call_log_link'

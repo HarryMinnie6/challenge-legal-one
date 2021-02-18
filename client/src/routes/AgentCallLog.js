@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import CallLogs from "../apis/CallLogs";
 
 const AgentCallLog = () => {
   const [agentLogs, setAgentLogs] = useState([]);
@@ -15,7 +16,7 @@ const AgentCallLog = () => {
   useEffect(() => {
     //===============================================================================================
     const fetchAgent = async () => {
-      const result = await axios(`/agent`);
+      const result = await CallLogs.get(`/agent`);
 
       setAgents(result.data);
     };
@@ -23,14 +24,14 @@ const AgentCallLog = () => {
     console.log("agents", agent);
     //==================================================================================================
     const fetchLogs = async () => {
-      const result = await axios(`/logs`);
+      const result = await CallLogs.get(`/logs`);
       setLogs(result.data);
     };
     fetchLogs();
     console.log("test", JSON.stringify(logs));
     //==================================================================================================
     const fetchResolution = async () => {
-      const result = await axios(`/resolution`);
+      const result = await CallLogs.get(`/resolution`);
       setResolution(result.data);
     };
     fetchResolution();
