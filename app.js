@@ -26,6 +26,11 @@ app.use("/logs", logsRoute);
 app.use("/resolution", resolutionRoute);
 app.use("/call", callsRoute);
 
+
+
+app.get('/', function(req, res) {
+  res.send('/logs')
+})
 //Error handling
 app.use((req, res, next) => {
   const error = new Error("Not Found");
