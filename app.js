@@ -21,10 +21,10 @@ let resolutions = require("./json-data/resolution");
 
 // const resolutionsRoute = require("./routes/resolutions");
 
-app.use("/agent", agentsRoute);
-app.use("/logs", logsRoute);
-app.use("/resolution", resolutionRoute);
-app.use("/call", callsRoute);
+// app.use("/agent", agentsRoute);
+// app.use("/logs", logsRoute);
+// app.use("/resolution", resolutionRoute);
+// app.use("/call", callsRoute);
 
 app.use("/", express.static("client/build"));
 app.get("*", (req, res) => {
