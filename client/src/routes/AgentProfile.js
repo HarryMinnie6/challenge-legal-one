@@ -52,22 +52,19 @@ function AgentProfile() {
         "No Agent Name"
       )}
       <div>
-      <Link to='/'>
-        <button
-          className='btn btn-info mt-2 mb-4 align-self-center'
-          onClick={() => history.goBack()}
-        >
-          Back
-        </button>
-      </Link>
-      <Link to='/'>
-        <button
-          className='btn btn-info m-2 mt-2 mb-4 align-self-center'
-          onClick={() => history.goBack()}
-        >
-          Home
-        </button>
-      </Link>
+        <Link to=''>
+          <button
+            className='btn btn-info mt-2 mb-4 align-self-center'
+            onClick={() => history.goBack()}
+          >
+            Back
+          </button>
+        </Link>
+        <Link to='/'>
+          <button className='btn btn-info m-2 mt-2 mb-4 align-self-center'>
+            Home
+          </button>
+        </Link>
       </div>
     </div>
   );
