@@ -1,6 +1,7 @@
 const http = require("http");
 const app = require("./app");
 const express = require("express");
+const cors = require("cors");
 const port = process.env.PORT || 5000;
 require("dotenv").config;
 const server = http.createServer(app);
