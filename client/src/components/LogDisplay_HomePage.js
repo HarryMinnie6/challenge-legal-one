@@ -42,7 +42,7 @@ function LogDisplay_HomePage() {
     history.push(`/agent/${identifier}`);
   };
 
-  function seconds_to_minutes(value) {
+  const seconds_to_minutes = (value) => {
     value = Number(value);
     var minutes = Math.floor((value % 3600) / 60);
     var seconds = Math.floor((value % 3600) % 60);
