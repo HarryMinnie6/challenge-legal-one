@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useHistory } from "react-router";
-import { Link } from "react-router-dom";
+import { useParams,  } from "react-router";
+import { Link, useHistory } from "react-router-dom";
 import CallLogs from "../apis/CallLogs";
 
 const AgentCallLog = () => {
