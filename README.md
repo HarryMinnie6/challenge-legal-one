@@ -17,4 +17,4 @@ unit testing of the code is a plus.
 <br>
 <h3>Personal notes:</h1>
 
-To avoid JSON data being displayed in front end, the front end routes need to be changed. This was done using an api (CallLog.js in the client folder). 
+To avoid JSON data being displayed in front end, the front end routes need to be changed. This was done using an api (CallLog.js in the client folder). Therefore if the routes on the front end match the backedn routes Heroku will display the JSON data instead of the page content.
