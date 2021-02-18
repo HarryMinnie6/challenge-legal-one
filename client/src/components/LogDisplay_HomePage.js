@@ -31,7 +31,7 @@ function LogDisplay_HomePage() {
     // ==========================================================================================
   }, []);
 
-  console.log(agents);
+  console.log(agent);
   console.log(logs);
 
   const display_call_logs = (number) => {

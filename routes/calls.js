@@ -2,12 +2,10 @@ const express = require("express");
 
 const router = express.Router();
 
-
 //Routes to JSON files
 let agents = require("../json-data/agents");
 let logs = require("../json-data/logs");
 let resolution = require("../json-data/resolution");
-
 
 //getting call logs for one number
 router.get("/:number", (req, res, next) => {
@@ -26,7 +24,7 @@ router.get("/resolution/:number", (req, res, next) => {
     (user) => user.agentIdentifier == identifier
   );
   console.log(foundResolution);
-  res.send(foundResolution)
+  res.send(foundResolution);
 });
 
 module.exports = router;
